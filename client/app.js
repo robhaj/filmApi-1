@@ -1,4 +1,4 @@
-var app = angular.module("app", ["ngRoute", "ngResource"]);
+var app = angular.module("app", ["ngRoute"]);
 //
 app.config(function($routeProvider) {
   $routeProvider
@@ -8,15 +8,15 @@ app.config(function($routeProvider) {
   })
   .when("/recommend", {
     templateUrl: "./views/recommend.html",
-    controller: "RecommendController"
+    controller: "SearchController"
   })
   .when("/library", {
     templateUrl: "./views/library.html",
-    controller: "LibraryController"
+    controller: "SearchController"
   })
   .when("/watchlist", {
     templateUrl: "./views/watchlist.html",
-    controller: "WatchlistController"
+    controller: "SearchController"
   })
   .otherwise({
     redirectTo: "/"

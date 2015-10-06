@@ -1,54 +1,40 @@
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/#/">Type Racer</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/#/">About</a>
-                </li>
-                <li>
-                    <a href="/#/">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/#/">Movie Match</a>
     </div>
-    <!-- /.container -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/#/">About</a>
+        </li>
+        <li>
+          <a href="/#/">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
 </nav>
 
 <!-- Page Content -->
-<div class="container">
 
-  <ul class="list-inline">
-    <!-- random list of words show up here -->
-    <li ng-class="{current: (currentWordIndex===$index), correct: correctWords.indexOf($index) !== -1, incorrect: incorrectWords.indexOf($index) !== -1}" ng-repeat="word in words">{{ word }}</li>
-  </ul>
+<div class='container'>
+  <div class="userInput">
+    <img src={{movies}}></img>
+    <input type="text" ng-model='search'>
+    <button ng-click="searchMovies()" class="btn btn-lg btn-primary">SEARCH</button>
   </div>
-
-  <div class="inputBox">
-  <input ng-model="user.input" ng-keypress="keyPress($event.keyCode)" type="text" class="userInput" placeholder="Type the words shown above...">
-  </div>
-  <timer interval="1000">{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>&copy; Jurrasic Productions 2016</p>
-            </div>
-        </div>
-        <!-- /.row -->
-    </footer>
-
+  <button ng-click="searchSimilar()" class="btn btn-lg btn-primary">Search Similar</button>
+  <img ng-repeat="image in similarImages" src={{image}}></img>
 </div>

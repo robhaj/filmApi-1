@@ -1,30 +1,41 @@
 // *** main dependencies *** //
+require("./routes/api.js");
+var mongoose = require('mongoose');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var api = require('./routes/api');
+
+
+// *** routes *** //
+var apiRoutes = require('./routes/api.js');
+
+mongoose.connect("mongodb://localhost/movie-database");
 
 // *** express instance *** //
 var app = express();
 
+
 // *** view engine *** //
 app.set('view engine', 'html');
+
+
+// *** static directory *** //
 
 // *** config middleware *** //
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client/')));
 
-app.use('/api/v1', api);
 
 // *** main routes *** //
-app.use('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client/views/', 'index.html'));
+app.use('/api/', apiRoutes);
+app.get('/', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../client/views/index.html'));
 });
 
 // catch 404 and forward to error handler

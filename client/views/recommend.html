@@ -30,11 +30,18 @@
 <!-- Page Content -->
 
 <div class='container'>
-  <div class="userInput">
-    <img src={{movies}}></img>
-    <input type="text" ng-model='search'>
+  <div class="col-md-4"></div>
+  <div class="col-md-6 userInput">
+    <!-- <div class="col-md-6"></div> -->
+    <img class="col-md-6 search-movie" src={{movies}}></img>
+    <input class="search-box" type="text" ng-model='search' placeholder="Last movie you enjoyed?">
+    <br><br>
     <button ng-click="searchMovies()" class="btn btn-lg btn-primary">SEARCH</button>
-  </div>
+
+  <br><br>
   <button ng-click="searchSimilar()" class="btn btn-lg btn-primary">Search Similar</button>
-  <img ng-repeat="image in similarImages" src={{image}}></img>
+</div>
+  <br><br>
+  <img class="col-md-3 image-size" ng-repeat="image in similarImages" src={{image}}></img>
+
 </div>

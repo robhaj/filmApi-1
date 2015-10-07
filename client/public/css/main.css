@@ -7,6 +7,24 @@ a {
   color: #00B7FF;
 }
 
+.image-size{
+  width: 180px;
+  height: 250px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px 5px;
+  border-radius: 16px;
+
+}
 .userInput {
   margin-top: 100px;
+}
+
+.search-box{
+  width:40%;
+  margin-right: 200px;
+}
+
+.search-movie{
+  postion: relative;
 }

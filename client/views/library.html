@@ -37,6 +37,12 @@
     <br><br>
     <img ng-src={{movie.image}}></img>
     <p>{{movie.title}}</p>
-    <button ng-click="addMovieToLibrary()" class="btn btn-block btn-sm btn-primary">Add to Library</button>
+    <button ng-click="addMovieToLibrary(); showLibrary()" class="btn btn-block btn-lg btn-primary">Add to Library</button>
   </div>
+</div>
+
+<br><hr>
+
+<div>
+  <img class="col-md-3 image-size" ng-repeat="movie in movieLibrary" src={{movie.image}}></img>
 </div>

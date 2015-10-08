@@ -20,7 +20,7 @@ router.post('/movies', function (req, res, next) {
     res.json(newMovie);
   })
   .catch(function (err) {
-    console.log(err)
+    console.log(err);
     res.send(err);
   })
   .done();

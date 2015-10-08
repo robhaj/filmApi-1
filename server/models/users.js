@@ -13,14 +13,13 @@ var Movie = new Schema ({
   genres: Array,
   image: String,
   year: Number,
-  duration: Number,
+  duration: String,
   plot: String,
   rated: String,
   imdbRating: Number,
   watched: Boolean,
   userRating: Number,
   userReview: String,
-  dateWatched: { type: Date, default: Date.now }
 });
 
 var User = mongoose.model('users', User);

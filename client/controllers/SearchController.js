@@ -26,9 +26,5 @@ app.controller("SearchController", ["$scope", "$window", "movieFactory", functio
       });
     }
   };
-  $scope.addMovieToLibrary = function() {
-    $window.location.href = '#/library';
-    console.log($scope.movies);
-  };
 
 }]);

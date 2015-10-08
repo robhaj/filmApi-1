@@ -30,5 +30,13 @@
 <!-- Page Content -->
 
 <div class='container'>
-  <img ng-src={{movies}}></img>
+  <div class="userInput">
+    <p>Add a Movie to Your Library</p>
+    <input type="text" ng-model='search'>
+    <button ng-click="searchMovies()" class="btn btn-lg btn-primary">SEARCH</button>
+    <br><br>
+    <img ng-src={{movie.image}}></img>
+    <p>{{movie.title}}</p>
+    <button ng-click="addMovieToLibrary()" class="btn btn-block btn-sm btn-primary">Add to Library</button>
+  </div>
 </div>

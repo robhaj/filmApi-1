@@ -12,7 +12,7 @@ app.config(function($routeProvider) {
   })
   .when("/library", {
     templateUrl: "./views/library.html",
-    controller: "SearchController"
+    controller: "LibraryController"
   })
   .when("/watchlist", {
     templateUrl: "./views/watchlist.html",

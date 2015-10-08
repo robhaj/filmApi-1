@@ -10,6 +10,7 @@ var User = new Schema ({
 
 var Movie = new Schema ({
   title: String,
+  genres: Array,
   image: String,
   year: Number,
   duration: Number,

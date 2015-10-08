@@ -13,11 +13,16 @@ router.get('/movies', function(req, res, next) {
 });
 
 router.post('/movies', function (req, res, next) {
-  console.log('test');
-  var newMovie = new Movie ({title: 'Dongs', image: 'xxx', year: 2001, plot: 'Stuff', rated: 'PG-13', userRating: 9, imdbRating: '8', watched: true, userReview: "Was Stupid"});
+  // console.log(req.body);
+  var newMovie = new Movie (req.body);
   newMovie.saveQ()
-  .then(function (result) { res.json(newMovie);})
-  .catch(function (err) { res.send(err); })
+  .then(function (result) {
+    res.json(newMovie);
+  })
+  .catch(function (err) {
+    console.log(err)
+    res.send(err);
+  })
   .done();
 });
 

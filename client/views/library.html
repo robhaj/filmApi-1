@@ -43,6 +43,13 @@
 
 <br><hr>
 
-<div>
-  <img class="col-md-3 image-size" ng-repeat="movie in movieLibrary" src={{movie.image}}></img>
+<div class="row">
+  <div ng-repeat="movie in movieLibrary" class="col-xs-3">
+    <img class="image-size" src={{movie.image}}></img>
+      <div>
+      <p>Title: {{movie.title}} <br>
+         Year: {{movie.year}} <br>
+         Rated: {{movie.rated}}</p>
+      </div>
+  </div>
 </div>

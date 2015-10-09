@@ -12,7 +12,6 @@ var session = require('express-session');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
-
 // *** routes *** //
 var apiRoutes = require('./routes/api.js');
 

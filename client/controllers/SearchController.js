@@ -27,4 +27,11 @@ app.controller("SearchController", ["$scope", "$window", "movieFactory", functio
     }
   };
 
+  $scope.redirectAuth = function(){
+    console.log('test');
+    $location.path('/auth/google');
+  };
+
+
+
 }]);

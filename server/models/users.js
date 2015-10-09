@@ -1,12 +1,20 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// var User = new Schema ({
+//   email: String,
+//   library: [{ type : Schema.Types.ObjectId, ref : 'library'}],
+//   watchList: [{ type : Schema.Types.ObjectId, ref : 'watchList'}],
+//   recommendations: [{ type : Schema.Types.ObjectId, ref : 'recommendations'}],
+// });
+
 var User = new Schema ({
   email: String,
   library: Array,
   watchList: Array,
-  recommendations: Array
+  recommendations: Array,
 });
+
 
 var Movie = new Schema ({
   title: String,

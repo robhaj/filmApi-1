@@ -1,5 +1,6 @@
 // *** main dependencies *** //
-require("./routes/api.js");
+  require("./routes/api.js");
+  require("./routes/user.js");
 var mongoose = require('mongoose');
 var express = require('express');
 var path = require('path');
@@ -14,17 +15,10 @@ var session = require('express-session');
 // *** routes *** //
 var apiRoutes = require('./routes/api.js');
 var routes = require('./routes/index.js');
+var userRoutes = require('./routes/user.js');
 
 mongoose.connect("mongodb://localhost/movie-database");
 
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
 
 // *** express instance *** //
 var app = express();
@@ -53,6 +47,7 @@ app.use(express.static(path.join(__dirname, '../client/')));
 // *** main routes *** //
 app.use('/api/', apiRoutes);
 app.use('/', routes);
+app.use('/user/', userRoutes);
 app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/views/index.html'));
 });

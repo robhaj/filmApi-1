@@ -4,6 +4,7 @@ var path = require('path');
 var mongoose = require('mongoose-q')(require('mongoose'));
 var passport = require('passport');
 var google = require('../auth/auth');
+var User = require('../models/users.js').User;
 
 
 router.get('/auth/google',
@@ -15,11 +16,9 @@ router.get('/auth/google/callback',
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-  res.json("Authenticated.");
+  res.json("Authenticated");
   return next(); }
   res.redirect('/#/recommend');
 }
-
-
 
 module.exports = router;

@@ -39,7 +39,9 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
   $scope.showLibrary = function () {
     movieFactory.get()
     .success(function(response){
-    $scope.movieLibrary = response;
+      console.log(response);
+    $scope.movieLibrary = response.library;
+    console.log($scope.movieLibrary);
     })
     .error(function(error){
      console.log(error);

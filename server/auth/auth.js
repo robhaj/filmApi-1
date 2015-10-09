@@ -33,7 +33,7 @@ passport.use(new GoogleStrategy({
         } else {
           console.log(user);
           return done(null, user);
-      }
+        }
       });
     });
   }));

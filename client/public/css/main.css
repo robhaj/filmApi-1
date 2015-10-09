@@ -1,4 +1,5 @@
 body {
+  background-image:url('../img/dark_embroidery.png');
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -16,6 +17,13 @@ a {
   border-radius: 16px;
 
 }
+
+.container{
+  background-image:url('../img/dark_embroidery.png');
+}
+.goog-login {
+  float:right;
+}
 .userInput {
   margin-top: 100px;
 }
@@ -27,4 +35,11 @@ a {
 
 .search-movie{
   postion: relative;
+}
+.navbar {
+  background-image: url('../img/dark_embroidery.png');
+}
+
+.not-orange {
+  background-image: url('../img/dark_embroidery.png';
 }

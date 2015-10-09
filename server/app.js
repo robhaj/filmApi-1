@@ -18,6 +18,14 @@ var routes = require('./routes/index.js');
 mongoose.connect("mongodb://localhost/movie-database");
 
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
 // *** express instance *** //
 var app = express();
 

@@ -11,16 +11,8 @@ var passport = require('passport');
 var session = require('express-session');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-var GOOGLE_CLIENT_ID = "1029739669550-q5aoik4jas06smjh82n3k5qaq3n14mun.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "JMCPzFA_kzrefRfXfyfEMjfx";
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
 // *** routes *** //
 var apiRoutes = require('./routes/api.js');
 
@@ -39,10 +31,19 @@ passport.use(new GoogleStrategy({
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Google account with a user record in your database,
       // and return that user instead.
+      console.log(profile);
       return done(null, profile);
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 // *** express instance *** //
 var app = express();
@@ -59,7 +60,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat',
+  saveUninitialized: true,
+  resave: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../client/')));
@@ -69,11 +73,8 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.me' }));
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/#');
-  });
+  passport.authenticate('google', { successRedirect : '/#/library',
+                    failureRedirect : '/login' }));
 
 // *** main routes *** //
 app.use('/api/', apiRoutes);
@@ -82,42 +83,40 @@ app.get('/', function(req, res, next) {
 });
 
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login');
-}
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   res.redirect('/login');
+// }
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-
-// *** error handlers *** //
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
+// // catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
+//
+// // *** error handlers *** //
+//
+// // development error handler
+// // will print stacktrace
+// if (app.get('env') === 'development') {
+//   app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.render('error', {
+//       message: err.message,
+//       error: err
+//     });
+//   });
+// }
+//
+// // production error handler
+// // no stacktraces leaked to user
+// app.use(function(err, req, res, next) {
+//   res.status(err.status || 500);
+//   res.render('error', {
+//     message: err.message,
+//     error: {}
+//   });
+// });
 
 module.exports = app;

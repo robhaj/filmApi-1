@@ -19,6 +19,10 @@ app.config(function($routeProvider) {
     templateUrl: "./views/watchlist.html",
     controller: "SearchController"
   })
+  .when("/auth/google/callback", {
+    templateUrl: './views/search.html',
+    controller: "SearchController"
+  })
   .otherwise({
     redirectTo: "/"
   });

@@ -9,7 +9,7 @@ app.factory("movieFactory", ["$http", function($http) {
     return $http.get('/api/movies');
  };
 
-   object.post = function(movie) {
+  object.post = function(movie) {
    return $http.post('/api/movies', movie);
  };
 

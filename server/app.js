@@ -52,5 +52,12 @@ app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/views/index.html'));
 });
 
+exports.ensureAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) {
+  res.json("Authenticated");
+  return next(); }
+  res.redirect('/#/recommend');
+};
+
 
 module.exports = app;

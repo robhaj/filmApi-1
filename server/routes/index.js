@@ -14,11 +14,11 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { successRedirect : '/#/library',
                     failureRedirect : '/#/recommend' }));
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-  res.json("Authenticated");
-  return next(); }
-  res.redirect('/#/recommend');
-}
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//   res.json("Authenticated");
+//   return next(); }
+//   res.redirect('/#/recommend');
+// }
 
 module.exports = router;

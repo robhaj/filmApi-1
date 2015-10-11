@@ -1,11 +1,14 @@
 var app = angular.module("app", ["ngRoute"]);
+// var ensureAuthenticated = require('../auth/auth.js');
+
 
 
 app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
     templateUrl: "./views/search.html",
-    controller: "SearchController"
+    controller: "SearchController",
+     access : {allowAnonymous : false}
   })
   .when("/recommend", {
     templateUrl: "./views/recommend.html",
@@ -13,7 +16,8 @@ app.config(function($routeProvider) {
   })
   .when("/library", {
     templateUrl: "./views/library.html",
-    controller: "LibraryController"
+    controller: "LibraryController",
+    access : {allowAnonymous : false}
   })
   .when("/watchlist", {
     templateUrl: "./views/watchlist.html",

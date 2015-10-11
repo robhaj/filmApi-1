@@ -3,6 +3,13 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../models/users').User;
 var config = require('../config');
 
+ var ensureAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) {
+  // res.json("Authenticated");
+  return next(); }
+  res.redirect('/#/recommend');
+};
+
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_CLIENT_SECRET,
@@ -38,6 +45,13 @@ passport.use(new GoogleStrategy({
     });
   }));
 
+// exports.ensureAuthenticated = function (req, res, next) {
+//   if (req.isAuthenticated()) {
+//   res.json("Authenticated");
+//   return next(); }
+//   res.redirect('/#/recommend');
+// };
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -47,4 +61,4 @@ passport.deserializeUser(function(obj, done) {
 });
 
 
-module.exports = passport;
+module.exports = ensureAuthenticated;

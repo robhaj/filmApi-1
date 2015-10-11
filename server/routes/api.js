@@ -3,8 +3,10 @@ var router = express.Router();
 var mongoose = require('mongoose-q')(require('mongoose'), {spread:true});
 var Movie = require('../models/users.js').Movie;
 var User = require('../models/users.js').User;
+var passport = require('passport');
+var ensureAuthenticated = require('../auth/auth.js');
 
-router.get('/movies', function(req, res, next) {
+router.get('/movies', ensureAuthenticated, function (req, res, next) {
   var sessionID = (req.session.passport.user._id);
 
   User.findByIdQ(sessionID)
@@ -13,7 +15,7 @@ router.get('/movies', function(req, res, next) {
     .done();
 });
 
-router.post('/movies', function (req, res, next) {
+router.post('/movies', ensureAuthenticated, function (req, res, next) {
  console.log(req.session);
   var sessionID = (req.session.passport.user._id);
 
@@ -38,7 +40,7 @@ router.post('/movies', function (req, res, next) {
 
 
 //Get all users
-router.get('/users', function(req, res, next) {
+router.get('/users', ensureAuthenticated, function (req, res, next) {
   console.log('test');
   User.findQ()
     .then(function (result) { res.json(result);})

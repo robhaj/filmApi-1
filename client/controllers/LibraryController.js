@@ -27,7 +27,7 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
 
   $scope.addMovieToLibrary = function() {
     console.log($scope.movie);
-    movieFactory.post($scope.movie)
+    movieFactory.postL($scope.movie)
      .success(function(){
       console.log('Added');
      })
@@ -37,7 +37,7 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
   };
 
   $scope.showLibrary = function () {
-    movieFactory.get()
+    movieFactory.getL()
     .success(function(response){
     $scope.movieLibrary = response.library;
     })
@@ -51,7 +51,7 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
   $scope.deleteMovie = function () {
     var movie = this.movie;
     console.log(movie);
-    movieFactory.delete(movie)
+    movieFactory.deleteL(movie)
      .success(function(){
       console.log('Deleted');
      })

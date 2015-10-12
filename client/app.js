@@ -10,7 +10,7 @@ app.config(function($routeProvider) {
   })
   .when("/recommend", {
     templateUrl: "./views/recommend.html",
-    controller: "SearchController"
+    controller: "RecommendController"
   })
   .when("/library", {
     templateUrl: "./views/library.html",
@@ -19,7 +19,7 @@ app.config(function($routeProvider) {
   })
   .when("/watchlist", {
     templateUrl: "./views/watchlist.html",
-    controller: "SearchController"
+    controller: "WatchlistController"
   })
   .when("/auth/google/callback", {
     templateUrl: './views/search.html',
@@ -29,3 +29,6 @@ app.config(function($routeProvider) {
     redirectTo: "/"
   });
 });
+
+
+

@@ -44,24 +44,6 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
   .done();
 });
 
-router.post('/:userid/notes', function(req, res, next){
-  var newNote = new Note(req.body);
-  newNote.save();
-
-  var id = req.params.userid;
-  var update = {$push : {notes : newNote}};
-  var options = {new : true};
-
-  User.findByIdAndUpdateQ(id, update, options)
-  .then(function(result){
-    res.json(result);
-  })
-  .catch(function(err){
-    res.send(err);
-  })
-  .done();
-
-});
 
 //delete movie from user's library
 
@@ -123,15 +105,14 @@ router.post('/:userid/notes', function(req, res, next){
   // });
 
 
-router.delete('/movies', function(req, res, next) {
-var movieID = "561bef14712b608a68924665";
+router.delete('/movies/:id', function(req, res, next) {
 
- Movie.findByIdAndRemove(movieID, function(err, data){
-   if(err){
-     res.json({'message': err});
-   } else {
-     res.json(data);
-    }
+   Movie.findByIdAndRemove(req.params.id, function(err, data){
+     if(err){
+       res.json({'message': err});
+     } else {
+       res.json(data);
+      }
   });
  });
 

@@ -1,8 +1,6 @@
 var app = angular.module("app", ["ngRoute"]);
 // var ensureAuthenticated = require('../auth/auth.js');
 
-
-
 app.config(function($routeProvider) {
   $routeProvider
   .when("/", {

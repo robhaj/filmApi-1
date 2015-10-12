@@ -45,12 +45,6 @@ passport.use(new GoogleStrategy({
     });
   }));
 
-// exports.ensureAuthenticated = function (req, res, next) {
-//   if (req.isAuthenticated()) {
-//   res.json("Authenticated");
-//   return next(); }
-//   res.redirect('/#/recommend');
-// };
 
 passport.serializeUser(function(user, done) {
   done(null, user);

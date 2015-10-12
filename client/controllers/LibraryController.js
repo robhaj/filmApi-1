@@ -48,4 +48,8 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
     });
   };
 
+  $scope.deleteLibrary = function () {
+    movieFactory.delete();
+  };
+
 }]);

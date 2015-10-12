@@ -1,20 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// var User = new Schema ({
-//   email: String,
-//   library: [{ type : Schema.Types.ObjectId, ref : 'library'}],
-//   watchList: [{ type : Schema.Types.ObjectId, ref : 'watchList'}],
-//   recommendations: [{ type : Schema.Types.ObjectId, ref : 'recommendations'}],
-// });
-
-var User = new Schema ({
-  email: String,
-  library: Array,
-  watchList: Array,
-  recommendations: Array,
-});
-
 
 var Movie = new Schema ({
   title: String,
@@ -29,6 +15,15 @@ var Movie = new Schema ({
   userRating: Number,
   userReview: String,
 });
+
+var User = new Schema ({
+  email: String,
+  library: [{ type : Schema.Types.ObjectId, ref : 'movies'}],
+  watchList: [{ type : Schema.Types.ObjectId, ref : 'movies'}],
+  recommendations: [{ type : Schema.Types.ObjectId, ref : 'movies'}],
+});
+
+
 
 var User = mongoose.model('users', User);
 var Movie = mongoose.model('movies', Movie);

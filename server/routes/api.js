@@ -11,52 +11,73 @@ var ensureAuthenticated = require('../auth/auth.js');
 router.get('/movies', ensureAuthenticated, function (req, res, next) {
   var sessionID = (req.session.passport.user._id);
 
-  User.findByIdQ(sessionID)
-    .then(function (result) { res.json(result);})
-    .catch(function (err) {res.send(err); })
-    .done();
+  User.findById(sessionID)
+    .populate('library')
+    .exec(function(err, user){
+    if(err){
+      res.send(err);
+    } else {
+      res.json(user);
+    }
+  });
 });
+
 
 //add movie to user's library
 
 router.post('/movies', ensureAuthenticated, function (req, res, next) {
  console.log(req.session);
   var sessionID = (req.session.passport.user._id);
-
   var newMovie = new Movie (req.body);
-  newMovie.saveQ()
-  .then(function (result) {
-    User.findByIdAndUpdate(
-      sessionID,
-      {$push: {"library": newMovie}},
-        {safe: true, upsert: true, new : true},
-        function(err, model) {
-            console.log(err);
-        });
-    res.json(newMovie);
+
+  newMovie.saveQ();
+
+  User.findByIdAndUpdateQ(sessionID,
+        {$push: {"library": newMovie}},
+        {safe: true, upsert: true, new : true, unique: true})
+  .then (function(result) {
+    res.json(result);
   })
   .catch(function (err) {
-    console.log(err);
     res.send(err);
   })
   .done();
 });
 
+router.post('/:userid/notes', function(req, res, next){
+  var newNote = new Note(req.body);
+  newNote.save();
+
+  var id = req.params.userid;
+  var update = {$push : {notes : newNote}};
+  var options = {new : true};
+
+  User.findByIdAndUpdateQ(id, update, options)
+  .then(function(result){
+    res.json(result);
+  })
+  .catch(function(err){
+    res.send(err);
+  })
+  .done();
+
+});
+
 //delete movie from user's library
 
-router.delete('/movies', function (req, res, next) {
+// router.delete('/movies', function (req, res, next) {
   // console.log(req.session);
- var sessionID = (req.session.passport.user._id);
-  var movieID = "561b1410e11b091d54254851";
+ // var sessionID = (req.session.passport.user._id);
+ //  var movieID = "561b1410e11b091d54254851";
 
-       User.update(
-            {_id : sessionID},
-            { $unset: { 'library' : { _id : movieID }}},
-            function(err, data){
-                if(err) return console.log(err);
-                res.json(data.library);
-            });
-    });
+ //       User.update(
+ //            {_id : sessionID},
+ //            { $unset: { 'library' : { _id : movieID }}},
+ //            function(err, data){
+ //                if(err) return console.log(err);
+ //                res.json(data.library);
+ //            });
+ //    });
 
 // router.delete('/movies', function (req, res, next) {
 //  console.log(req.session);
@@ -78,10 +99,12 @@ router.delete('/movies', function (req, res, next) {
 //  .done();
 // });
 
+//   var movieID = "561b2812fb1114cb5a8eeba0";
+//   var sessionID= "561b1d542b9323b1f0eb70b2";
 
 //   User.findByIdAndUpdate(
-//     sessionID, {new: true},
-//    { $pull: { library : {  _id: movieID } } },
+//     sessionID,
+//    { $pull: { library : {  id : movieID } } },
 //    function(err, data){
 //       if(err){
 //         console.log(err);
@@ -100,14 +123,17 @@ router.delete('/movies', function (req, res, next) {
   // });
 
 
-// router.delete('/beer/:id', function(req, res, next) {
-//  Beer.findByIdAndRemove(req.params.id, function(err, data){
-//    if(err){
-//      res.json({'message': err});
-//    } else {
-//      res.json(data);
-//    }
+router.delete('/movies', function(req, res, next) {
+var movieID = "561bef14712b608a68924665";
 
+ Movie.findByIdAndRemove(movieID, function(err, data){
+   if(err){
+     res.json({'message': err});
+   } else {
+     res.json(data);
+    }
+  });
+ });
 
 
 //Get all users

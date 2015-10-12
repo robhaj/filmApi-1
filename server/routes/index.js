@@ -18,11 +18,4 @@ router.get('/logout', function(req, res){
   res.redirect('/#/watchlist');
 });
 
-// function ensureAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//   res.json("Authenticated");
-//   return next(); }
-//   res.redirect('/#/recommend');
-// }
-
 module.exports = router;

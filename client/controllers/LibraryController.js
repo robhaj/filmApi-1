@@ -39,17 +39,26 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
   $scope.showLibrary = function () {
     movieFactory.get()
     .success(function(response){
-      console.log(response);
     $scope.movieLibrary = response.library;
-    console.log($scope.movieLibrary);
     })
     .error(function(error){
      console.log(error);
     });
   };
 
-  $scope.deleteLibrary = function () {
-    movieFactory.delete();
+  $scope.showLibrary();
+
+  $scope.deleteMovie = function () {
+    var movie = this.movie;
+    console.log(movie);
+    movieFactory.delete(movie)
+     .success(function(){
+      console.log('Deleted');
+     })
+    .error(function(data) {
+      console.log(error);
+    });
   };
+
 
 }]);

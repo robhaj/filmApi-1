@@ -13,8 +13,8 @@ app.factory("movieFactory", ["$http", function($http) {
    return $http.post('/api/movies', movie);
  };
 
-  object.delete = function() {
-  return $http.delete('/api/movies');
+  object.delete = function(movie) {
+    return $http.delete('/api/movies/' +movie._id);
 };
 
   return object;

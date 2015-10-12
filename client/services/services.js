@@ -14,8 +14,7 @@ app.factory("movieFactory", ["$http", function($http) {
  };
 
   object.delete = function(movie) {
-    console.log(movie._id);
-    return $http.delete('/api/movies', movieID);
+    return $http.delete('/api/movies/' +movie._id);
 };
 
   return object;

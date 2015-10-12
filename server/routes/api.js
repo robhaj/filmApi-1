@@ -106,7 +106,7 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
 
 
 router.delete('/movies/:id', function(req, res, next) {
-
+console.log(req.params.id);
    Movie.findByIdAndRemove(req.params.id, function(err, data){
      if(err){
        res.json({'message': err});

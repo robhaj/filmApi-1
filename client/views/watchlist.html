@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/#/">Movie Match</a>
+      <a class="navbar-brand" href="/#/">what.Film</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -31,10 +31,28 @@
 
 <div class='container'>
   <div class="userInput">
-    <img src={{movies}}></img>
+    <p>Add a Movie to Your Watch List</p>
     <input type="text" ng-model='search'>
-    <button ng-click="searchMovies()" class="btn btn-lg btn-primary">SEARCH</button>
+    <button ng-click="searchMovies()" class="btn btn-lg btn-primary not-orange">SEARCH</button>
+    <br><br>
+    <img ng-src={{movie.image}}></img>
+    <p>{{movie.title}}</p>
+    <button ng-click="addMovieToLibrary(); showLibrary()" class="btn btn-block btn-lg btn-primary not-orange">Add to Watch List</button>
   </div>
-  <button ng-click="searchSimilar()" class="btn btn-lg btn-primary">Search Similar</button>
-  <img ng-repeat="image in similarImages" src={{image}}></img>
 </div>
+
+<br><hr>
+
+<div class="row">
+  <div ng-repeat="movie in movieWatchList" class="col-xs-3">
+    <img class="image-size" src={{movie.image}}></img>
+      <div>
+      <p>Title: {{movie.title}} <br>
+         Year: {{movie.year}} <br>
+         Rated: {{movie.rated}}</p>
+         <button ng-click='deleteMovie(); showLibrary()'class="btn btn-sm btn-default">Delete</button>
+         <button class="btn btn-sm btn-default">Add to Library</button>
+      </div>
+  </div>
+</div>
+

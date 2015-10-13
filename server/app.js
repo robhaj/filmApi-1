@@ -11,7 +11,6 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 
-
 // *** routes *** //
 var apiRoutes = require('./routes/api.js');
 var routes = require('./routes/index.js');
@@ -19,16 +18,11 @@ var userRoutes = require('./routes/user.js');
 
 mongoose.connect("mongodb://localhost/movie-database");
 
-
 // *** express instance *** //
 var app = express();
 
-
 // *** view engine *** //
 app.set('view engine', 'html');
-
-
-// *** static directory *** //
 
 // *** config middleware *** //
 app.use(logger('dev'));
@@ -52,6 +46,9 @@ app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/views/index.html'));
 });
 
+
+
+//auth check function
 exports.ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
   res.json("Authenticated");

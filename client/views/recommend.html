@@ -30,18 +30,21 @@
 <!-- Page Content -->
 
 <div class='container'>
-  <div class="col-md-4"></div>
-  <div class="col-md-6 userInput">
-    <!-- <div class="col-md-6"></div> -->
-    <img class="col-md-6 search-movie" src={{movies}}></img>
-    <input class="search-box" type="text" ng-model='search' placeholder="Last movie you enjoyed?">
-    <br><br>
-    <button ng-click="searchMovies()" class="btn btn-lg btn-primary">SEARCH</button>
+  <div class="row">
+    <div ng-repeat="movie in allSimilarObjects track by $index" class="col-xs-3">
+      <img class="image-size" src={{movie.urlPoster}}></img>
 
+        <!-- <p>Title: {{movie.title}} <br>
+           Year: {{movie.year}} <br>
+           Rated: {{movie.rated}}</p> -->
+           <button class="btn btn-sm btn-default">Add to Watchlist</button>
+           <button class="btn btn-sm btn-default">Add to Library</button>
+        </div>
+    </div>
+  </div>
+    <button ng-click="searchSimilar()" class="btn btn-lg btn-primary">SEARCH</button>
   <br><br>
-  <button ng-click="searchSimilar()" class="btn btn-lg btn-primary">Search Similar</button>
 </div>
   <br><br>
-  <img class="col-md-3 image-size" ng-repeat="image in similarImages" src={{image}}></img>
 
 </div>

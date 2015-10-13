@@ -8,7 +8,7 @@ a {
   color: #00B7FF;
 }
 
-.image-size{
+.image-size {
   width: 180px;
   height: 250px;
   margin-bottom: 20px;
@@ -16,6 +16,34 @@ a {
   padding: 5px 5px;
   border-radius: 16px;
 
+}
+
+.first-movie {
+    border-radius: 16px;
+  
+}
+
+.image-size:hover {
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+}
+
+.single-picture {
+  width: 180px;
+  height: 250px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px 5px;
+}
+
+.signout {
+  float:right;
+  height: 30px;
+}
+.login {
+  float:right;
+  width: 130px;
+  height: 30px;
 }
 
 .container{

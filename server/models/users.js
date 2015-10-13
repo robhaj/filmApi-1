@@ -6,14 +6,14 @@ var Movie = new Schema ({
   title: String,
   genres: Array,
   image: String,
-  year: Number,
-  duration: String,
+  year: String,
   plot: String,
   rated: String,
   imdbRating: Number,
   watched: Boolean,
   userRating: Number,
   userReview: String,
+  movie_id: String
 });
 
 var User = new Schema ({

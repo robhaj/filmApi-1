@@ -9,10 +9,10 @@ var User = require('../models/users.js').User;
 router.post('/', function (req, res, next) {
   console.log('test');
   var newUser = new User ({
-      email: 'hajekd@gmail.com',
-      library: ['a','b','c'],
-      watchList: ['a','b','c'],
-      recommendations: ['a','b','c']
+    email: 'hajekd@gmail.com',
+    library: ['a','b','c'],
+    watchList: ['a','b','c'],
+    recommendations: ['a','b','c']
   });
   newUser.saveQ()
   .then(function (result) { res.json(newUser);})
@@ -29,9 +29,9 @@ router.get('/:id', function (req, res, next ){
 router.get('/users', function(req, res, next) {
   console.log('test');
   User.findQ()
-    .then(function (result) { res.json(result);})
-    .catch(function (err) {res.send(err); })
-    .done();
+  .then(function (result) { res.json(result);})
+  .catch(function (err) {res.send(err); })
+  .done();
 });
 
 

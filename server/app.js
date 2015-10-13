@@ -1,6 +1,6 @@
 // *** main dependencies *** //
-  require("./routes/api.js");
-  require("./routes/user.js");
+require("./routes/api.js");
+require("./routes/user.js");
 var mongoose = require('mongoose');
 var express = require('express');
 var path = require('path');
@@ -30,8 +30,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ secret: 'keyboard cat',
-  saveUninitialized: true,
-  resave: false
+saveUninitialized: true,
+resave: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -51,10 +51,10 @@ app.get('/', function(req, res, next) {
 //auth check function
 exports.ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
-  res.json("Authenticated");
-  return next(); }
-  res.redirect('/#/recommend');
-};
+    res.json("Authenticated");
+    return next(); }
+    res.redirect('/#/recommend');
+  };
 
 
-module.exports = app;
+  module.exports = app;

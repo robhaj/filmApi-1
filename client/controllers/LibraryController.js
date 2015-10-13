@@ -5,45 +5,47 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
   $scope.searchMovies = function() {
     movieFactory.searchRequest($scope.search)
     .success(function(data){
+      console.log(data);
       $scope.movie = {
-            title: data[0].title,
-            genres: data[0].genres,
-            image: data[0].urlPoster,
-            year: Number(data[0].year),
-            duration: data[0].runtime[0],
-            plot: data[0].simplePlot,
-            rated: data[0].rated,
-            imdbRating: Number(data[0].rating),
-            watched: Boolean,
-            userRating: Number,
-            userReview: String,
-          };
-          console.log($scope.movie);
-        })
+        title: data["results"][0]["original_title"],
+        genres: data["results"][0]["genre_ids"][0],
+        image: 'http://image.tmdb.org/t/p/w500/'+data["results"][0]["poster_path"],
+        year: data["results"][0]["release_date"],
+        plot: data["results"][0]["overview"],
+        rated: data["results"][0]["vote_average"],
+        imdbRating: Number(data["results"][0]["vote_average"]),
+        movie_id: data["results"][0]["id"],
+        watched: Boolean,
+        userRating: Number,
+        userReview: String,
+      };
+    })
     .error(function(error){
       console.log(error);
     });
   };
 
   $scope.addMovieToLibrary = function() {
-    console.log($scope.movie);
-    movieFactory.postL($scope.movie)
-     .success(function(){
-      console.log('Added');
-     })
-    .error(function(data) {
-      console.log(error);
-    });
-  };
+     console.log($scope.movie);
+    //  if (arrayObjectIndexOf($scope.movie))
+     movieFactory.postL($scope.movie)
+      .success(function(){
+        $scope.removeMovie = true;
+       console.log('Added');
+      })
+     .error(function(data) {
+       console.log(error);
+     });
+   };
+
 
   $scope.showLibrary = function () {
     movieFactory.getL()
     .success(function(response){
-    $scope.movieLibrary = response.library;
-    console.log($scope.movieLibrary);
+      $scope.movieLibrary = response.library;
     })
     .error(function(error){
-     console.log(error);
+      console.log(error);
     });
   };
 
@@ -51,11 +53,10 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
 
   $scope.deleteMovie = function () {
     var movie = this.movie;
-    console.log(movie);
     movieFactory.deleteL(movie)
-     .success(function(){
+    .success(function(){
       console.log('Deleted');
-     })
+    })
     .error(function(data) {
       console.log(error);
     });

@@ -6,11 +6,48 @@
   <!-- styles -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../animate.css">
   <link rel="stylesheet" href="../public/css/main.css">
 </head>
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#/">what.Film</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/#/library">My Library</a>
+          </li>
+          <li>
+            <a href="/#/recommend">My Recommendations</a>
+          </li>
+          <li>
+            <a href="/#/watchlist">Watchlist</a>
+          </li>
+          <li>
+            <a href="/auth/google"><img class="login" src="../public/img/btn_google_signin_dark_focus_web.png"></img></a>
+          </li>
+          <li>
+            <a href="/logout"><img class="signout" src="../public/img/googsignout.png"></a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
   <div class="container">
-    <a href="/logout">LOG YO BITCH ASS OUT</a>
+
 
     <div ng-view></div>
   </div>
@@ -24,13 +61,11 @@
   <script src="/app.js"></script>
 
   <script src="/controllers/utility.js"></script>
+  <script src="../client_config.js"></script>
   <script src="/controllers/SearchController.js"></script>
   <script src="/controllers/LibraryController.js"></script>
-<<<<<<< HEAD
   <script src="/controllers/RecommendController.js"></script>
-=======
   <script src="/controllers/WatchlistController.js"></script>
->>>>>>> upstream/master
   <script src="/services/services.js"></script>
 </body>
 </html>

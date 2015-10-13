@@ -4,8 +4,8 @@ var app = angular.module("app", ["ngRoute"]);
 app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
-    templateUrl: "./views/search.html",
-    controller: "SearchController"
+    templateUrl: "./views/library.html",
+    controller: "LibraryController"
   })
   .when("/recommend", {
     templateUrl: "./views/recommend.html",
@@ -27,6 +27,3 @@ app.config(function($routeProvider) {
     redirectTo: "/"
   });
 });
-
-
-

@@ -7,11 +7,11 @@ var google = require('../auth/auth');
 var User = require('../models/users.js').User;
 
 router.get('/auth/google',
-  passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/userinfo.email' }));
+passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/userinfo.email' }));
 
 router.get('/auth/google/callback',
-  passport.authenticate('google', { successRedirect : '/#/library',
-                    failureRedirect : '/#/recommend' }));
+passport.authenticate('google', { successRedirect : '/#/library',
+failureRedirect : '/#/recommend' }));
 
 router.get('/logout', function(req, res){
   req.logout();

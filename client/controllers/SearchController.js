@@ -17,15 +17,15 @@ app.controller("SearchController", ["$scope", "$window", "movieFactory", functio
     });
   };
 
-  $scope.searchSimilar = function() {
-    for (var i = 0; i < $scope.similarTitles.length; i++) {
-      movieFactory.searchRequest($scope.similarTitles[i])
-      .success(function(data){
-        $scope.similarMovieData = data;
-        $scope.similarImages.push($scope.similarMovieData[0].urlPoster);
-      });
-    }
-  };
+  // $scope.searchSimilar = function() {
+  //   for (var i = 0; i < $scope.similarTitles.length; i++) {
+  //     movieFactory.searchRequest($scope.similarTitles[i])
+  //     .success(function(data){
+  //       $scope.similarMovieData = data;
+  //       $scope.similarImages.push($scope.similarMovieData[0].urlPoster);
+  //     });
+  //   }
+  // };
 
   $scope.redirectAuth = function(){
     console.log('test');

@@ -5,21 +5,19 @@ app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
     templateUrl: "./views/search.html",
-    controller: "SearchController",
-     access : {allowAnonymous : false}
+    controller: "SearchController"
   })
   .when("/recommend", {
     templateUrl: "./views/recommend.html",
-    controller: "SearchController"
+    controller: "RecommendController"
   })
   .when("/library", {
     templateUrl: "./views/library.html",
-    controller: "LibraryController",
-    access : {allowAnonymous : false}
+    controller: "LibraryController"
   })
   .when("/watchlist", {
     templateUrl: "./views/watchlist.html",
-    controller: "SearchController"
+    controller: "WatchlistController"
   })
   .when("/auth/google/callback", {
     templateUrl: './views/search.html',

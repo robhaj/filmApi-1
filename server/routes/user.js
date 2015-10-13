@@ -21,7 +21,8 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next ){
-  console.log(req.session);
+  res.json(req.session);
+
 
 });
 

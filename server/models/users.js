@@ -24,7 +24,6 @@ var User = new Schema ({
 });
 
 
-
 var User = mongoose.model('users', User);
 var Movie = mongoose.model('movies', Movie);
 

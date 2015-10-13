@@ -40,6 +40,7 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
     movieFactory.getL()
     .success(function(response){
     $scope.movieLibrary = response.library;
+    console.log($scope.movieLibrary);
     })
     .error(function(error){
      console.log(error);

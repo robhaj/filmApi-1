@@ -21,6 +21,7 @@ app.controller("LibraryController", ["$scope", "movieFactory", "$rootScope", fun
       console.log(data);
     });
   };
+
   $scope.searchMovies = function() {
     movieFactory.searchRequest($scope.search)
     .success(function(data){
@@ -46,13 +47,36 @@ app.controller("LibraryController", ["$scope", "movieFactory", "$rootScope", fun
   $scope.addMovieToLibrary = function() {
      movieFactory.postL($scope.movie)
       .success(function(){
-        $scope.removeMovie = true;
-       console.log('Added');
-      })
-     .error(function(data) {
-       console.log(error);
-     });
-   };
+        movieFactory.similarRequest($scope.movie.movie_id)
+          .success(function(response) {
+            for (var i = 0; i < response.results.length; i++) {
+              $scope.recommendedMovie = {
+                title: response.results[i]["original_title"],
+                genres: response.results[i]["genre_ids"][0],
+                image: 'http://image.tmdb.org/t/p/w500/'+response.results[i]["poster_path"],
+                year: response.results[i]["release_date"],
+                plot: response.results[i]["overview"],
+                rated: response.results[i]["vote_average"],
+                imdbRating: Number(response.results[i]["vote_average"]),
+                movie_id: response.results[i]["id"].toString(),
+                watched: Boolean,
+                userRating: Number,
+                userReview: String,
+                recommendedBy: $scope.movie.title
+              };
+              console.log($scope.recommendedMovie.image);
+              movieFactory.postR($scope.recommendedMovie)
+              .success(function(){
+                console.log('movie added to R');
+              })
+            .error(function(){
+              console.log('error');
+            });
+          }
+        });
+      });
+    };
+
 
    $scope.addMovieToRecommend = function() {
      movieFactory.postR($scope.movie)
@@ -62,7 +86,6 @@ app.controller("LibraryController", ["$scope", "movieFactory", "$rootScope", fun
        console.log(error);
      });
    };
-
 
   $scope.showLibrary = function () {
     movieFactory.getL()
@@ -80,6 +103,7 @@ app.controller("LibraryController", ["$scope", "movieFactory", "$rootScope", fun
     var movie = this.movie;
     movieFactory.deleteL(movie)
     .success(function(){
+      movieFactory.deleteR(movie.title)
       console.log('Deleted');
     })
     .error(function(data) {

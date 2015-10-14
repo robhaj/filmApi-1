@@ -31,36 +31,4 @@ router.get('/users', function(req, res, next) {
   .done();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;

@@ -1,9 +1,9 @@
 <div class='container'>
-      <div ng-repeat="movie in allSimilarObjects track by $index" class="col-xs-3">
+      <div ng-repeat="movie in movieRecommends" class="col-xs-3">
         <div class="row">
       <flip flip-toggle horizontal>
       <flip-front>
-      <img class="image-size" src='http://image.tmdb.org/t/p/w500/{{movie.poster_path}}'></img></flip-front>
+      <img class="image-size" src='{{movie.image}}'></img></flip-front>
       <flip-back class="image-size"><br>
         <p>Title: {{movie.title}} <br>
         Year: {{movie.year}} <br>

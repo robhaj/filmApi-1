@@ -13,7 +13,8 @@ var Movie = new Schema ({
   watched: Boolean,
   userRating: Number,
   userReview: String,
-  movie_id: String
+  movie_id: String,
+  recommendedBy: String || "none"
 });
 
 var User = new Schema ({

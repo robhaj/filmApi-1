@@ -16,6 +16,7 @@ body {
   padding: 5px 5px;
   border-radius: 16px;
   color: white;
+  overflow: scroll;
 }
 
 .first-movie {

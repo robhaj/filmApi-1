@@ -86,7 +86,7 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
 
     User.findByIdAndUpdateQ(sessionID,
       {$push: {"watchList": newMovie}},
-      {safe: true, upsert: true, new : true, unique: true})
+      {safe: true, upsert: true, new : true})
       .then (function(result) {
         res.json(result);
       })
@@ -97,15 +97,14 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
     });
 
     router.post('/recommend', ensureAuthenticated, function (req, res, next) {
-      console.log(req.session);
       var sessionID = (req.session.passport.user._id);
       var newMovie = new Movie (req.body);
-
+      console.log(req.body.movie_id);
       newMovie.saveQ();
 
       User.findByIdAndUpdateQ(sessionID,
         {$push: {"recommendations": newMovie}},
-        {safe: true, upsert: true, new : true, unique: true})
+        {safe: true, upsert: true, new : true})
         .then (function(result) {
           res.json(result);
         })
@@ -115,6 +114,18 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
         .done();
       });
 
+      router.get('/recommend', ensureAuthenticated, function (req, res, next) {
+        var sessionID = (req.session.passport.user._id);
+        User.findById(sessionID)
+        .populate('recommendations')
+        .exec(function(err, user){
+          if(err){
+            res.send(err);
+          } else {
+            res.json(user);
+          }
+        });
+      });
 
     //delete movie from user's watchlist
 
@@ -139,6 +150,11 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
       .done();
     });
 
-
+    router.delete('/recommend/:title', ensureAuthenticated, function(req, res,next) {
+        Movie.removeQ({recommendedBy : req.params.title })
+        .then(function (result) { res.json(result);})
+        .catch(function (err) {res.send(err); })
+        .done();
+    });
 
     module.exports = router;

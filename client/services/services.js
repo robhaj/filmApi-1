@@ -40,13 +40,16 @@ app.factory("movieFactory", ["$http", function($http) {
     return $http.delete('/api/watchlist/' +movie._id);
   };
 
-  //Recommend Calls
-  // object.getUser = function(id) {
-  //   return $http.get('/user/'+id+')'
-  // }
+  //Recommended Calls
 
-  object.postR = function() {
-    return $http.post('/api/recommend');
+  object.getR = function() {
+    return $http.get('/api/recommend');
+  };
+  object.postR = function(movie) {
+    return $http.post('/api/recommend', movie);
+  };
+  object.deleteR = function(movieTitle) {
+    return $http.delete('/api/recommend/' + movieTitle);
   };
   return object;
 }]);

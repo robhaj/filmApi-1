@@ -1,43 +1,17 @@
 app.controller("RecommendController", ["$scope", "$window", "$http", "movieFactory", function($scope, $window, $http, movieFactory) {
-  $scope.userTitles = [];
-  $scope.similarMovieData = [];
-  $scope.allSimilarObjects = [];
-  // $scope.movie = {};
 
-  angular.element(document).ready(function(){
-    movieFactory.getL()
-    .success(function(response){
-      $scope.userLibrary = response.library;
-      for (var i = 0; i < $scope.userLibrary.length; i++) {
-        $scope.userTitles.push($scope.userLibrary[i].movie_id);
-      }
-      for (var l = 0; l < $scope.userTitles.length; l++) {
-        movieFactory.similarRequest($scope.userTitles[l])
-        .success(function(response){
-          for (var k = 0; k < response.results.length; k++) {
-            $scope.allSimilarObjects.push(response.results[k]);
-            $scope.movie = {
-              // title: response.results[k]["original_title"],
-              genres: response.results[k]["genre_ids"][0],
-              image: 'http://image.tmdb.org/t/p/w500/'+response.results[k]["poster_path"],
-              year: response.results[k]["release_date"],
-              plot: response.results[k]["overview"],
-              rated: response.results[k]["vote_average"],
-              imdbRating: Number(response.results[k]["vote_average"]),
-              movie_id: response.results[k]["id"],
-              watched: Boolean,
-              userRating: Number,
-              userReview: String,
-            };
-            movieFactory.postR($scope.movie)
-            .success(function(){
-              console.log('added movie to recommended')
-            });
-          }
-        });
-      }
-    });
-});
+$scope.showRecommended = function () {
+  movieFactory.getR()
+  .success(function(response){
+    $scope.movieRecommends = response.recommendations;
+    console.log($scope.movieRecommends);
+  })
+  .error(function(error){
+    console.log(error);
+  });
+};
+
+$scope.showRecommended();
 
 $scope.addMovieToLibrary = function() {
    var data = this.movie;
@@ -88,11 +62,8 @@ $scope.addMovieToWatch = function() {
   });
 };
 
-
-
 $scope.redirectAuth = function(){
   console.log('test');
   $location.path('/auth/google');
 };
-
 }]);

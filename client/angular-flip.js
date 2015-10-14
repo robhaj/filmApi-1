@@ -67,10 +67,14 @@ angular.module('angular-flip', [])
 
             attrs.$observe('flipToggle', function(value) {
                 if (!value) {
+                    value = 'mouseenter'
+                }
+
+                else if (!value) {
                     value = 'click'
                 }
 
-                if (previousValue) elm.off(previousValue, controller.toggle);
+                else if (previousValue) elm.off(previousValue, controller.toggle);
 
                 previousValue = value;
 

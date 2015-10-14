@@ -1,8 +1,4 @@
-<!-- Navigation -->
-
-
 <!-- Page Content -->
-
 <div class='container'>
   <div class="userInput">
     <p>Add a Movie to Your Library</p>
@@ -14,9 +10,7 @@
     <button ng-click="addMovieToLibrary(); showLibrary()" class="btn btn-lg btn-primary not-orange">Add to Library</button>
   </div>
 </div>
-
 <br><hr>
-
 <div class="row">
   <div ng-repeat="movie in movieLibrary" class="col-xs-3">
     <img class="image-size" src={{movie.image}}></img>

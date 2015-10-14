@@ -4,8 +4,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.btn-primary {
+  background-color: grey;
 }
 
 .image-size {
@@ -15,18 +15,14 @@ a {
   margin-top: 20px;
   padding: 5px 5px;
   border-radius: 16px;
-
+  color: white;
 }
 
 .first-movie {
     border-radius: 16px;
-  
 }
 
-.image-size:hover {
-    -webkit-animation: pulse 1s;
-    animation: pulse 1s;
-}
+
 
 .single-picture {
   width: 180px;
@@ -39,19 +35,22 @@ a {
 .signout {
   float:right;
   height: 30px;
+  margin-left:150px;
+  margin-bottom: 5px;
+
 }
 .login {
   float:right;
   width: 130px;
   height: 30px;
+  margin-left: 150px;
+  margin-bottom: 5px;
 }
 
 .container{
   background-image:url('../img/dark_embroidery.png');
 }
-.goog-login {
-  float:right;
-}
+
 .userInput {
   margin-top: 100px;
 }
@@ -61,13 +60,6 @@ a {
   margin-right: 200px;
 }
 
-.search-movie{
-  postion: relative;
-}
 .navbar {
   background-image: url('../img/dark_embroidery.png');
-}
-
-.not-orange {
-  background-image: url('../img/dark_embroidery.png';
 }

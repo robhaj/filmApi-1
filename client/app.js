@@ -1,4 +1,4 @@
-var app = angular.module("app", ["ngRoute"]);
+var app = angular.module("app", ["ngRoute", "angular-flip"]);
 // var ensureAuthenticated = require('../auth/auth.js');
 
 app.config(function($routeProvider) {

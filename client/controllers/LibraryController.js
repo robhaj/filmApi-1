@@ -1,11 +1,29 @@
-app.controller("LibraryController", ["$scope", "movieFactory", function($scope, movieFactory) {
-
+app.controller("LibraryController", ["$scope", "movieFactory", "$rootScope", function($scope, movieFactory, $rootScope) {
   $scope.movie = {};
 
+  // $scope.isLoggedIn = function() {
+  //       $http.get('/api/users')
+  //         .success(function(data) {
+  //           console.log(data);
+  //           $rootScope.loggedIn = data;
+  //           if (data) return true
+  //           return false;
+  //         })
+  //         .error(function(data) {
+  //           console.log('error: ' + data);
+  //           return false
+  //         });
+  //     };
+
+  $scope.retrieveEmail = function() {
+    movieFactory.getUser(id)
+    .success(function(data){
+      console.log(data);
+    });
+  };
   $scope.searchMovies = function() {
     movieFactory.searchRequest($scope.search)
     .success(function(data){
-      console.log(data);
       $scope.movie = {
         title: data["results"][0]["original_title"],
         genres: data["results"][0]["genre_ids"][0],
@@ -26,14 +44,21 @@ app.controller("LibraryController", ["$scope", "movieFactory", function($scope, 
   };
 
   $scope.addMovieToLibrary = function() {
-     console.log($scope.movie);
-    //  if (arrayObjectIndexOf($scope.movie))
      movieFactory.postL($scope.movie)
       .success(function(){
         $scope.removeMovie = true;
        console.log('Added');
       })
      .error(function(data) {
+       console.log(error);
+     });
+   };
+
+   $scope.addMovieToRecommend = function() {
+     movieFactory.postR($scope.movie)
+     .success(function(){
+       console.log('Added to Recommended');
+     }).error(function(data){
        console.log(error);
      });
    };

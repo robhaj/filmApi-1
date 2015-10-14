@@ -2,30 +2,45 @@ app.controller("RecommendController", ["$scope", "$window", "$http", "movieFacto
   $scope.userTitles = [];
   $scope.similarMovieData = [];
   $scope.allSimilarObjects = [];
-  $scope.movie = {};
+  // $scope.movie = {};
 
   angular.element(document).ready(function(){
     movieFactory.getL()
     .success(function(response){
       $scope.userLibrary = response.library;
-      console.log($scope.userLibrary);
       for (var i = 0; i < $scope.userLibrary.length; i++) {
         $scope.userTitles.push($scope.userLibrary[i].movie_id);
       }
       for (var l = 0; l < $scope.userTitles.length; l++) {
         movieFactory.similarRequest($scope.userTitles[l])
         .success(function(response){
-          for (var k = 0; k < 10; k++) {
+          for (var k = 0; k < response.results.length; k++) {
             $scope.allSimilarObjects.push(response.results[k]);
+            $scope.movie = {
+              // title: response.results[k]["original_title"],
+              genres: response.results[k]["genre_ids"][0],
+              image: 'http://image.tmdb.org/t/p/w500/'+response.results[k]["poster_path"],
+              year: response.results[k]["release_date"],
+              plot: response.results[k]["overview"],
+              rated: response.results[k]["vote_average"],
+              imdbRating: Number(response.results[k]["vote_average"]),
+              movie_id: response.results[k]["id"],
+              watched: Boolean,
+              userRating: Number,
+              userReview: String,
+            };
+            movieFactory.postR($scope.movie)
+            .success(function(){
+              console.log('added movie to recommended')
+            });
           }
         });
       }
-    }
-  );
+    });
 });
 
 $scope.addMovieToLibrary = function() {
-   var data = this.movie
+   var data = this.movie;
    console.log(data);
    $scope.movie = {
      title: data["original_title"],
@@ -40,7 +55,6 @@ $scope.addMovieToLibrary = function() {
      userRating: Number,
      userReview: String,
    };
-   console.log($scope.movie)
    movieFactory.postL($scope.movie)
     .success(function(){
      console.log('Added');
@@ -52,7 +66,6 @@ $scope.addMovieToLibrary = function() {
 
 $scope.addMovieToWatch = function() {
   var data = this.movie
-  console.log(data);
   $scope.movie = {
     title: data["original_title"],
     genres: data["genre_ids"][0],
@@ -66,7 +79,6 @@ $scope.addMovieToWatch = function() {
     userRating: Number,
     userReview: String,
   };
-  console.log($scope.movie)
   movieFactory.postW($scope.movie)
    .success(function(){
     console.log('Added');

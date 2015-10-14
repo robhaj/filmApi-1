@@ -96,6 +96,25 @@ router.post('/movies', ensureAuthenticated, function (req, res, next) {
       .done();
     });
 
+    router.post('/recommend', ensureAuthenticated, function (req, res, next) {
+      console.log(req.session);
+      var sessionID = (req.session.passport.user._id);
+      var newMovie = new Movie (req.body);
+
+      newMovie.saveQ();
+
+      User.findByIdAndUpdateQ(sessionID,
+        {$push: {"recommendations": newMovie}},
+        {safe: true, upsert: true, new : true, unique: true})
+        .then (function(result) {
+          res.json(result);
+        })
+        .catch(function (err) {
+          res.send(err);
+        })
+        .done();
+      });
+
 
     //delete movie from user's watchlist
 

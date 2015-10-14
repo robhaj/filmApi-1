@@ -1,18 +1,19 @@
-
-
-<!-- Page Content -->
-
 <div class='container'>
-  <div class="row">
-    <div ng-repeat="movie in allSimilarObjects track by $index" class="col-xs-3">
-      <!-- <div ng-show="!show"> -->
-      <img class="image-size" src='http://image.tmdb.org/t/p/w500/{{movie.poster_path}}'></img>
-
-      <!-- <p>Title: {{movie.title}} <br>
-      Year: {{movie.year}} <br>
-      Rated: {{movie.rated}}</p> -->
-      <button class="btn btn-sm btn-default" ng-click="addMovieToWatch()">Add to Watchlist</button>
-      <button class="btn btn-sm btn-default" ng-click="addMovieToLibrary()">Add to Library</button>
+      <div ng-repeat="movie in allSimilarObjects track by $index" class="col-xs-3">
+        <div class="row">
+      <flip flip-toggle horizontal>
+      <flip-front>
+      <img class="image-size" src='http://image.tmdb.org/t/p/w500/{{movie.poster_path}}'></img></flip-front>
+      <flip-back class="image-size"><br>
+        <p>Title: {{movie.title}} <br>
+        Year: {{movie.year}} <br>
+        Rated: {{movie.rated}} <br>
+        Plot: {{movie.plot}}</p>
+        <button class="btn btn-sm btn-default" ng-click="addMovieToWatch()">Add to Watchlist</button>
+        <button class="btn btn-sm btn-default" ng-click="addMovieToLibrary()">Add to Library</button>
+      </flip-back>
+    </flip>
+      </div>
     </div>
     </div>
   </div>

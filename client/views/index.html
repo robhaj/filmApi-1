@@ -4,9 +4,12 @@
   <meta charset="utf-8">
   <title>what.Film</title>
   <!-- styles -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="../animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="../flip.css"/>
   <link rel="stylesheet" href="../public/css/main.css">
 </head>
 <body>
@@ -34,11 +37,11 @@
           <li>
             <a href="/#/watchlist">Watchlist</a>
           </li>
-          <li>
+          <li ng-hide="isLoggedIn()">
             <a href="/auth/google"><img class="login" src="../public/img/btn_google_signin_dark_focus_web.png"></img></a>
           </li>
-          <li>
-            <a href="/logout"><img class="signout" src="../public/img/googsignout.png"></a>
+          <li ng-hide="isLoggedIn()">
+            <a href="/logout" ><img class="signout" src="../public/img/googsignout.png"></a>
           </li>
         </ul>
       </div>
@@ -59,7 +62,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
 
   <script src="/app.js"></script>
-
+  <script src="../angular-flip.js"></script>
   <script src="/controllers/utility.js"></script>
   <script src="../client_config.js"></script>
   <script src="/controllers/SearchController.js"></script>

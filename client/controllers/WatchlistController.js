@@ -26,7 +26,6 @@ app.controller("WatchlistController", ["$scope", "movieFactory", function($scope
 
 
   $scope.addMovieToLibrary = function() {
-     console.log($scope.movie);
      movieFactory.postW($scope.movie)
       .success(function(){
        console.log('Added');
@@ -51,7 +50,6 @@ app.controller("WatchlistController", ["$scope", "movieFactory", function($scope
 
   $scope.deleteMovie = function () {
     var movie = this.movie;
-    console.log(movie);
     movieFactory.deleteW(movie)
     .success(function(){
       console.log('Deleted');

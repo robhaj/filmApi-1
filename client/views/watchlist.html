@@ -9,7 +9,7 @@
     <br><br>
     <img class= "first-movie" ng-src={{movie.image}}></img>
     <p>{{movie.title}}</p>
-    <button ng-click="addMovieToLibrary(); showLibrary()" class="btn btn-lg btn-primary not-orange">Add to Watch List</button>
+    <button ng-click="addMovieToWatch(); showWatch()" class="btn btn-lg btn-primary not-orange">Add to Watch List</button>
   </div>
 </div>
 
@@ -22,7 +22,7 @@
       <p>Title: {{movie.title}} <br>
          Release Date: {{movie.year}} <br>
          Rated: {{movie.rated}}</p>
-         <button ng-click='deleteMovie(); showLibrary()'class="btn btn-sm btn-default">Delete</button>
+         <button ng-click='deleteMovie(); showWatch()'class="btn btn-sm btn-default">Delete</button>
          <button class="btn btn-sm btn-default">Add to Library</button>
       </div>
   </div>

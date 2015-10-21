@@ -1,5 +1,4 @@
-var app = angular.module("app", ["ngRoute", "angular-flip"]);
-// var ensureAuthenticated = require('../auth/auth.js');
+var app = angular.module("app", ["ngRoute"]);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -21,7 +20,7 @@ app.config(function($routeProvider) {
   })
   .when("/auth/google/callback", {
     templateUrl: './views/search.html',
-    controller: "SearchController"
+    controller: "LibraryController"
   })
   .otherwise({
     redirectTo: "/"

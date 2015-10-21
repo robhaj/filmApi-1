@@ -1,25 +1,22 @@
 <div class='container'>
-      <div ng-repeat="movie in movieRecommends" class="col-xs-3">
-        <div class="row">
-      <flip flip-toggle horizontal>
-      <flip-front>
-      <img class="image-size" src='{{movie.image}}'></img></flip-front>
-      <flip-back class="image-size"><br>
-        <p>Title: {{movie.title}} <br>
-        Year: {{movie.year}} <br>
-        Rated: {{movie.rated}} <br>
-        Plot: {{movie.plot}}</p>
-        <button class="btn btn-sm btn-default" ng-click="addMovieToWatch()">Add to Watchlist</button>
-        <button class="btn btn-sm btn-default" ng-click="addMovieToLibrary()">Add to Library</button>
-      </flip-back>
-    </flip>
+  <div class="row">
+  <div ng-repeat="movie in movieRecommends" class="col-xs-3">
+    <div id="f1_container">
+  <div id="f1_card">
+  <div class="front face">
+    <img class="image-size" src='{{movie.image}}'></img></flip-front>
+      </div>
+    </div>
+  <div class="back face center">
+    <p class="movie-info">
+      Title: {{movie.title}} <br>
+    Year: {{movie.year}} <br>
+    Rated: {{movie.rated}} <br>
+    Plot: {{movie.plot}}</p>
+    <button class="btn btn-sm btn-default" ng-click="addMovieToWatch()">Add to Watchlist</button>
+    <button class="btn btn-sm btn-default" ng-click="addMovieToLibrary()">Add to Library</button>
+  </div>
       </div>
     </div>
     </div>
   </div>
-</div>
-<br><br>
-</div>
-<br><br>
-
-</div>

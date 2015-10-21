@@ -6,10 +6,10 @@
   <!-- styles -->
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.css"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="../animate.css">
+  <link rel="stylesheet" href="../public/css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="../flip.css"/>
+  <link rel="stylesheet" href="../public/css/flip.css"/>
   <link rel="stylesheet" href="../public/css/main.css">
 </head>
 <body>
@@ -50,8 +50,6 @@
     <!-- /.container -->
   </nav>
   <div class="container">
-
-
     <div ng-view></div>
   </div>
 
@@ -62,13 +60,16 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
 
   <script src="/app.js"></script>
-  <script src="../angular-flip.js"></script>
-  <script src="/controllers/utility.js"></script>
+  <script src="/public/js/utility.js"></script>
   <script src="../client_config.js"></script>
-  <script src="/controllers/SearchController.js"></script>
   <script src="/controllers/LibraryController.js"></script>
   <script src="/controllers/RecommendController.js"></script>
   <script src="/controllers/WatchlistController.js"></script>
-  <script src="/services/services.js"></script>
+  <script src="/services/libraryFactory.js"></script>
+  <script src="/services/recommendedFactory.js"></script>
+  <script src="/services/searchFactory.js"></script>
+  <script src="/services/watchlistFactory.js"></script>
+
+
 </body>
 </html>

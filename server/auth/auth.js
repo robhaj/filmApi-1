@@ -5,7 +5,6 @@ var config = require('../config');
 
 var ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
-    // res.json("Authenticated");
     return next(); }
     res.redirect('/#/recommend');
   };
@@ -44,7 +43,6 @@ var ensureAuthenticated = function (req, res, next) {
       });
     });
   }));
-
 
   passport.serializeUser(function(user, done) {
     done(null, user);

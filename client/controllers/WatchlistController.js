@@ -1,43 +1,29 @@
-app.controller("WatchlistController", ["$scope", "movieFactory", function($scope, movieFactory) {
+app.controller("WatchlistController", ["$scope", "watchlistFactory", "searchFactory", function($scope, watchlistFactory, searchFactory) {
 
   $scope.movie = {};
 
   $scope.searchMovies = function() {
-    movieFactory.searchRequest($scope.search)
+    searchFactory.searchRequest($scope.search)
     .success(function(data){
-      $scope.movie = {
-        title: data["results"][0]["original_title"],
-        genres: data["results"][0]["genre_ids"][0],
-        image: 'http://image.tmdb.org/t/p/w500/'+data["results"][0]["poster_path"],
-        year: data["results"][0]["release_date"],
-        plot: data["results"][0]["overview"],
-        rated: data["results"][0]["vote_average"],
-        imdbRating: Number(data["results"][0]["vote_average"]),
-        movie_id: data["results"][0]["id"],
-        watched: Boolean,
-        userRating: Number,
-        userReview: String,
-      };
+      $scope.movie = searchFactory.createMovie(data);
     })
     .error(function(error){
       console.log(error);
     });
   };
 
+  $scope.addMovieToWatch = function() {
+    watchlistFactory.postW($scope.movie)
+    .success(function(){
+      console.log('Added');
+    })
+    .error(function(data) {
+      console.log(error);
+    });
+  };
 
-  $scope.addMovieToLibrary = function() {
-     movieFactory.postW($scope.movie)
-      .success(function(){
-       console.log('Added');
-      })
-     .error(function(data) {
-       console.log(error);
-     });
-   };
-
-
-  $scope.showLibrary = function () {
-    movieFactory.getW()
+  $scope.showWatch = function () {
+    watchlistFactory.getW()
     .success(function(response){
       $scope.movieWatchList = response.watchList;
     })
@@ -46,11 +32,12 @@ app.controller("WatchlistController", ["$scope", "movieFactory", function($scope
     });
   };
 
-  $scope.showLibrary();
+  $scope.showWatch();
 
   $scope.deleteMovie = function () {
     var movie = this.movie;
-    movieFactory.deleteW(movie)
+
+    watchlistFactory.deleteW(movie)
     .success(function(){
       console.log('Deleted');
     })
@@ -58,6 +45,4 @@ app.controller("WatchlistController", ["$scope", "movieFactory", function($scope
       console.log(error);
     });
   };
-
-
 }]);

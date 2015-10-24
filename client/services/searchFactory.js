@@ -22,7 +22,7 @@ app.factory("searchFactory", ["$http", function($http) {
       userReview: String,
     };
     return movie;
-  }
+  };
   object.createRecommend = function(response){
     var recommendMovie = {
         title: response.results[i]["original_title"],
